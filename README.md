@@ -13,7 +13,7 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 1. `stanfordSentimentTreebank`文件夹  
     获取方式为 http://nlp.stanford.edu/~socherr/stanfordSentimentTreebank.zip ，将下载的压缩包解压之后的文件夹放在`Assignment1\utils\datasets`文件夹下即可。
 2. `glove.6B.50d.txt`  
-    获取方式为 http://nlp.stanford.edu/data/glove.6B.zip ，将下载的压缩包解压之后,将其中的`glove.6B.50d.txt`放在`Assignment1\utils\datasets`文件夹下即可。$x_2$
+    获取方式为 http://nlp.stanford.edu/data/glove.6B.zip ，将下载的压缩包解压之后,将其中的`glove.6B.50d.txt`放在`Assignment1\utils\datasets`文件夹下即可。$x_2$a  
       $$y=\frac{x_2}{z}$$
 ## 学习资料推荐
 码农场CS224n课程学习笔记  
