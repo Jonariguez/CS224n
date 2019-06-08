@@ -23,4 +23,7 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 * 码农场CS224n课程学习笔记  
 http://www.hankcs.com/nlp/cs224n-introduction-to-nlp-and-deep-learning.html  
 * Github中.md文件的LaTex渲染  
-https://stackoverflow.com/questions/35498525/latex-rendering-in-readme-md-on-github
+https://stackoverflow.com/questions/35498525/latex-rendering-in-readme-md-on-github  
+* 在线LaTex公式编辑器  
+http://latex.91maths.com/  
+https://www.codecogs.com/latex/eqneditor.php  
