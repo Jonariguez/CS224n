@@ -80,3 +80,63 @@ $$ (D_x\times H+H)+(H\times D_y+D_y) $$
 ![2f](Assignment1-img/2f.jpg)  
 
 ![2g](Assignment1-img/2g.jpg)  
+
+![3a](Assignment1-img/3a.jpg)  
+
+解答：  
+首先分析各个量的形状：$U=[u_1,u_2,...,u_W]\in d\times W$，$y,\hat{y}\in W\times 1$，其中$W$为词典大小，$d$为词向量的维度。   
+我们设：  
+$$ \theta=\begin{bmatrix}
+u_1^Tv_c\\ 
+u_2^Tv_c\\ 
+...\\ 
+u_W^Tv_c
+\end{bmatrix}=U^Tv_c \in W\times 1$$  
+
+则：  
+$$ \hat{y}_o = p(o|c)=\frac{exp(u_o^Tv_c}{\sum_{w=1}^{W}{exp(u_w^Tv_c)}}=softmax(\theta)_o $$  
+$$ \hat{y} =softmax(\theta) $$  
+那么：  
+$$ \frac{\partial J}{\partial v_c}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial \theta}{\partial v_c}=(\hat{y}-y)\cdot\frac{\partial }{\partial v_c}(U^Tv_c)=U(\hat{y}-y) $$  
+
+![3b](Assignment1-img/3b.jpg)  
+
+解答：  
+可以先对$U^T$求导：  
+$$ \frac{\partial J}{\partial U^T}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial \theta}{\partial U^T}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial }{\partial U^T}(U^Tv_c)=(\hat{y}-y)\cdot v_c^T $$  
+那么对$U$求导的结果对上式转置即可：  
+$$ \frac{\partial J}{\partial U}= ((\hat{y}-y)\cdot v_c^T)^T=v_c\cdot(\hat{y}-y)^T$$  
+也可以表示为：  
+$$ \frac{\partial J}{\partial U}=\begin{cases} (\hat{y}_w-1)\cdot v_c & w=o \\ \hat{y}_w\cdot v_c & w\neq o \end{cases} $$  
+
+![3c](Assignment1-img/3c.jpg)  
+
+解答：  
+首先应该知道：  
+$$ \sigma'(x)=\sigma(x)\cdot(1-\sigma(x)) $$  
+$$ 1-\sigma(x)=\sigma(-x) $$
+已知：  
+$$ J(o,v_c,U)=-log(\sigma(u_o^Tv_c))-\sum_{k=1}^{K}{log(\sigma(-u_k^Tv_c))} $$  
+
+直接求导即可：  
+$$ \frac{\partial J}{\partial v_c}=-\frac{\sigma'(u_o^Tv_c)\cdot u_o}{\sigma(u_o^Tv_c)}+\sum_{k=1}^{K}{\frac{\sigma'(-u_k^Tv_c)\cdot u_k}{\sigma(-u_k^Tv_c)}}= (\sigma(u_o^Tv_c)-1)u_o+\sum_{k=1}^{K}{\sigma(u_k^Tv_c)\cdot u_k}$$  
+$$ \frac{\partial J}{\partial u_k}=\begin{cases}(\sigma(u_o^Tv_c)-1)v_c & k=o \\ \sigma(u_k^Tv_c)v_c & k\neq o \end{cases}  $$  
+
+![3d](Assignment1-img/3d.jpg)
+
+解答：  
+根据题目的提示可知，我们可以设$F(o,v_c)$为损失函数，等价于前面的$J_{softmax-CE}$或者$J_{neg-sample}$，而$J$对变量的求导我们前面已经做过，所以这里直接使用$\frac{\partial F(o,v_c)}{\partial ..}$代替即可，不用再进一步求导展开。  
+(1) **skip-gram模型**  
+$$ J_{skip-gram}(word_{c-m..c+m})=\sum_{-m\leq j\leq m,j\neq 0}{F(w_{c+j},v_c)} $$
+$$ \frac{\partial J}{\partial U}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c))}{\partial U}} $$  
+$$ \frac{\partial J}{\partial v_c}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c))}{\partial v_c}} $$   
+$$ \frac{\partial J}{\partial v_j}=\vec{0}, j\neq c $$   
+   
+\(2) **CBOW模型**  
+因为CBOW模型是根据多个背景词预测一个中心词，又因为$F()$惩罚函数是形如`(一个词，一个词)`的形式，所以要把多个背景词变成一个词，那么一种有效的方式就是把这些背景词的词向量求平均便得到了一个词向量。  
+$$ \hat{v}=\sum_{-m\leq j\leq m,j\neq 0}{v_{c+j}} $$
+$$ J_{CBOW}(word_{c-m..c+m})=F(w_c,\hat{v}) $$  
+那么：  
+$$ \frac{\partial J}{\partial U}=\frac{\partial F(w_c,\hat{v}))}{\partial U} $$  
+$$ \frac{\partial J}{\partial v_c}=\vec{0}, c\notin \{c-m,..,c-1,c+1,..c+m\} $$  
+$$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial \hat{v}}\cdot\frac{\partial \hat{v}}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial v_j}, c\in \{c-m,..,c-1,c+1,..c+m\} $$  
