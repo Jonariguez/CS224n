@@ -12,11 +12,11 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 * 我自己的完成的作业和实现的代码，都在`Assignment_solution_DIY`文件夹下，只是作为备忘或者笔记保存，大家也可以参考或者指正错误，多谢指教。  
 
 ## 问题
-* Assignment1中的通过运行`get_datasets.sh`脚本不能成功获得数据  
+1. Assignment1中的通过运行`get_datasets.sh`脚本不能成功获得数据  
 首先在`Assignment1\utils`文件夹下创建`datasets`文件夹，该文件夹下应有两份数据：  
-1. `stanfordSentimentTreebank`文件夹  
+   * `stanfordSentimentTreebank`文件夹  
     获取方式为 http://nlp.stanford.edu/~socherr/stanfordSentimentTreebank.zip ，将下载的压缩包解压之后的文件夹放在`Assignment1\utils\datasets`文件夹下即可。
-2. `glove.6B.50d.txt`  
+    * `glove.6B.50d.txt`  
     获取方式为 http://nlp.stanford.edu/data/glove.6B.zip ，将下载的压缩包解压之后,将其中的`glove.6B.50d.txt`放在`Assignment1\utils\datasets`文件夹下即可。    
 
 ## 学习资料推荐
@@ -27,3 +27,5 @@ https://stackoverflow.com/questions/35498525/latex-rendering-in-readme-md-on-git
 * 在线LaTex公式编辑器  
 http://latex.91maths.com/  
 https://www.codecogs.com/latex/eqneditor.php  
+* 利用.gitignore忽略本地和已提交的文件  
+https://www.cnblogs.com/YangJieCheng/p/8175761.html
