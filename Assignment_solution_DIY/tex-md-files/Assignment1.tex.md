@@ -2,7 +2,7 @@ $$ Assignment\#1-solution $$
 
 ![1a](Assignment1-img/1a.jpg)  
   
-解答：
+**解：**
 $$ softmax(\mathbf{x})_i=\frac{e^{x_i}}{\sum_{j}{e^{x_j}}}=\frac{e^ce^{x_i}}{e^c\sum_{j}{e^{x_j}}}=\frac{e^{x_i+c}}{\sum_{j}{e^{x_j+c}}}=softmax(\mathbf{x}+c)_i $$  
 即  
 $$ softmax(\mathbf{x})=softmax(\mathbf{x}+c) $$  
@@ -10,19 +10,19 @@ $$ softmax(\mathbf{x})=softmax(\mathbf{x}+c) $$
 
 ![1b](Assignment1-img/1b.jpg)  
 
-解答：  
+**解：**  
 直接在代码中利用numpy实现即可。注意要先从$x$中减去每一行的最大值，这样在保证结果不变的情况下，所有的元素不大于0，不会出现`上溢出`，从而保证结果的正确性。具体可参考 http://www.hankcs.com/ml/computing-log-sum-exp.html  
   
 ![2a](Assignment1-img/2a.jpg)   
 
-解答：
+**解：**
 $$ \sigma'(x)=\frac{e^{-x}}{(1+e^{-x})^2}=\frac{1}{1+e^{-x}}\cdot\frac{e^{-x}}{1+e^{-x}}=\sigma(x)\cdot(1-\sigma(x)) $$  
 
 即$sigmoid$函数的求导可以由其本身来表示。
 
 ![2b](Assignment1-img/2b.jpg)  
 
-解答：  
+**解：**  
 我们知道真实标记$y$是one-hot向量，因此我们下面的推导都基于 $y_k=1$ ,且 $y_i=0,i\neq k$ ，即真实标记是 $k$ .  
 
 $$ \frac{\partial CE(y,\hat{y})}{\partial\theta}=\frac{\partial CE(y,\hat{y})}{\partial\hat{y}}\cdot\frac{\partial\hat{y}}{\partial\theta} $$  
@@ -52,7 +52,7 @@ $$ \frac{\partial CE(y,\hat{y})}{\partial\theta_i}=\hat{y}-y $$
 
 ![2c](Assignment1-img/2c.jpg)  
 
-解答：  
+**解：**  
 首先设：$Z_1=xW_1+b_1$ 和 $Z_2=hW_2+b_2$，那么前向传播的顺序依次为：  
 
 $$ Z_1=xW_1+b_1 $$
@@ -69,7 +69,7 @@ $$ \frac{\partial J}{\partial x} =\frac{\partial J}{\partial Z_2}\cdot\frac{\par
 
 ![2d](Assignment1-img/2d.jpg)  
 
-解答：  
+**解：**  
 (1) 从输入层到隐藏层，全连接共$D_x\times H$个，即$W_1$，加上$H$个偏置项，共$D_x\times H+H$个。  
 (2) 从隐藏层到输出层，共$H\times D_y+D_y$个。  
 参数个数共：
@@ -83,7 +83,7 @@ $$ (D_x\times H+H)+(H\times D_y+D_y) $$
 
 ![3a](Assignment1-img/3a.jpg)  
 
-解答：  
+**解：**  
 首先分析各个量的形状：$U=[u_1,u_2,...,u_W]\in d\times W$，$y,\hat{y}\in W\times 1$，其中$W$为词典大小，$d$为词向量的维度。   
 我们设：  
 $$ \theta=\begin{bmatrix}
@@ -101,17 +101,19 @@ $$ \frac{\partial J}{\partial v_c}=\frac{\partial J}{\partial \theta}\cdot\frac{
 
 ![3b](Assignment1-img/3b.jpg)  
 
-解答：  
+**解：**  
 可以先对$U^T$求导：  
 $$ \frac{\partial J}{\partial U^T}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial \theta}{\partial U^T}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial }{\partial U^T}(U^Tv_c)=(\hat{y}-y)\cdot v_c^T $$  
-那么对$U$求导的结果对上式转置即可：  
+  
+那么对 $U$ 求导的结果对上式转置即可：  
+
 $$ \frac{\partial J}{\partial U}= ((\hat{y}-y)\cdot v_c^T)^T=v_c\cdot(\hat{y}-y)^T$$  
 也可以表示为：  
 $$ \frac{\partial J}{\partial U}=\begin{cases} (\hat{y}_w-1)\cdot v_c & w=o \\ \hat{y}_w\cdot v_c & w\neq o \end{cases} $$  
 
 ![3c](Assignment1-img/3c.jpg)  
 
-解答：  
+**解：**  
 首先应该知道：  
 $$ \sigma'(x)=\sigma(x)\cdot(1-\sigma(x)) $$  
 $$ 1-\sigma(x)=\sigma(-x) $$
@@ -124,7 +126,7 @@ $$ \frac{\partial J}{\partial u_k}=\begin{cases}(\sigma(u_o^Tv_c)-1)v_c & k=o \\
 
 ![3d](Assignment1-img/3d.jpg)
 
-解答：  
+**解：**  
 根据题目的提示可知，我们可以设$F(o,v_c)$为损失函数，等价于前面的$J_{softmax-CE}$或者$J_{neg-sample}$，而$J$对变量的求导我们前面已经做过，所以这里直接使用$\frac{\partial F(o,v_c)}{\partial ..}$代替即可，不用再进一步求导展开。  
 (1) **skip-gram模型**  
 $$ J_{skip-gram}(word_{c-m..c+m})=\sum_{-m\leq j\leq m,j\neq 0}{F(w_{c+j},v_c)} $$
@@ -146,7 +148,8 @@ $$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial \hat
 ![3f](Assignment1-img/3f.jpg)  
 
 ![3g](Assignment1-img/3g.jpg)  
-解：我本地共训练了5+个小时。  
+**解：**   
+我本地共训练了**5**+个小时。  
 输出的结果为：  
 ![3g_ans](Assignment1-img/q3_word_vectors.png)
    
@@ -154,29 +157,29 @@ $$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial \hat
 ![3h](Assignment1-img/3h.jpg)  
 
 ![4a](Assignment1-img/4a.jpg)  
-解答：
+**解：**
 按题目要求实现即可。
 
 ![4b](Assignment1-img/4b.jpg)  
-解：引入正则化可以降低模型复杂度，进而避免过拟合，以提升泛化能力。  
+**解：** 引入正则化可以降低模型复杂度，进而避免过拟合，以提升泛化能力。  
 
 ![4c](Assignment1-img/4c.jpg)  
-解：注意是按照模型的验证集准确率来选择最优模型。  
+**解：** 注意是按照模型的验证集准确率来选择最优模型。  
 
 ![4d](Assignment1-img/4d.jpg)  
-解：我的本地答案：  
+**解：** 我的本地答案：  
 (1) 使用自己训练的词向量的结果
 ```
 Best regularization value: 7.05E-04
 Test accuracy (%): 30.361991
-dev acciracu (%): 32.698
+dev accuracy (%): 32.698
 ```
   
 (2) 使用预训练的词向量的结果
 ```
 Best regularization value: 1.23E+01
 Test accuracy (%): 37.556561
-dev acciracu (%): 37148
+dev accuracy (%): 37148
 ```
 使用预训练的词向量的效果更好的原因：
 * 其数据量大。
@@ -185,12 +188,12 @@ dev acciracu (%): 37148
 * 维度高。
 
 ![4e](Assignment1-img/4e.jpg)  
-解：  
+**解：**  
 ![4e_ans](Assignment1-img/q4_reg_v_acc.png)   
 解释：随着正则化因子的增大，最终所得的模型越简单，拟合能力差，出现欠拟合，导致两者的准确率下降。  
 
 ![4f](Assignment1-img/4f.jpg)  
-解：  
+**解：**  
 ![4f_ans](Assignment1-img/q4_dev_conf.png)  
   
 
