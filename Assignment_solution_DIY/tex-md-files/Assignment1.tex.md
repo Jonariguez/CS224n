@@ -1,7 +1,9 @@
-$$ Assignment\#1-solution $$  
-
-![1a](Assignment1-img/1a.jpg)  
+$$ Assignment\#1-solution\quad By\; Jonariguez $$  
   
+**所有的代码题目对应的代码可查看对应文件夹AssignmentX_Code下的.py文件**
+  
+![1a](Assignment1-img/1a.jpg)  
+
 **解：**
 $$ softmax(\mathbf{x})_i=\frac{e^{x_i}}{\sum_{j}{e^{x_j}}}=\frac{e^ce^{x_i}}{e^c\sum_{j}{e^{x_j}}}=\frac{e^{x_i+c}}{\sum_{j}{e^{x_j+c}}}=softmax(\mathbf{x}+c)_i $$  
 即  
@@ -94,7 +96,7 @@ u_W^Tv_c
 \end{bmatrix}=U^Tv_c \in W\times 1$$  
 
 则：  
-$$ \hat{y}_o = p(o|c)=\frac{exp(u_o^Tv_c}{\sum_{w=1}^{W}{exp(u_w^Tv_c)}}=softmax(\theta)_o $$  
+$$ \hat{y}_o = p(o|c)=\frac{exp(u_o^Tv_c)}{\sum_{w=1}^{W}{exp(u_w^Tv_c)}}=softmax(\theta)_o $$  
 $$ \hat{y} =softmax(\theta) $$  
 那么：  
 $$ \frac{\partial J}{\partial v_c}=\frac{\partial J}{\partial \theta}\cdot\frac{\partial \theta}{\partial v_c}=(\hat{y}-y)\cdot\frac{\partial }{\partial v_c}(U^Tv_c)=U(\hat{y}-y) $$  
@@ -130,8 +132,8 @@ $$ \frac{\partial J}{\partial u_k}=\begin{cases}(\sigma(u_o^Tv_c)-1)v_c & k=o \\
 根据题目的提示可知，我们可以设$F(o,v_c)$为损失函数，等价于前面的$J_{softmax-CE}$或者$J_{neg-sample}$，而$J$对变量的求导我们前面已经做过，所以这里直接使用$\frac{\partial F(o,v_c)}{\partial ..}$代替即可，不用再进一步求导展开。  
 (1) **skip-gram模型**  
 $$ J_{skip-gram}(word_{c-m..c+m})=\sum_{-m\leq j\leq m,j\neq 0}{F(w_{c+j},v_c)} $$
-$$ \frac{\partial J}{\partial U}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c))}{\partial U}} $$  
-$$ \frac{\partial J}{\partial v_c}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c))}{\partial v_c}} $$   
+$$ \frac{\partial J}{\partial U}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c)}{\partial U}} $$  
+$$ \frac{\partial J}{\partial v_c}=\sum_{-m\leq j\leq m,j\neq 0}{\frac{\partial F(w_{c+j},v_c)}{\partial v_c}} $$   
 $$ \frac{\partial J}{\partial v_j}=\vec{0}, j\neq c $$   
    
 \(2) **CBOW模型**  
@@ -139,9 +141,9 @@ $$ \frac{\partial J}{\partial v_j}=\vec{0}, j\neq c $$
 $$ \hat{v}=\sum_{-m\leq j\leq m,j\neq 0}{v_{c+j}} $$
 $$ J_{CBOW}(word_{c-m..c+m})=F(w_c,\hat{v}) $$  
 那么：  
-$$ \frac{\partial J}{\partial U}=\frac{\partial F(w_c,\hat{v}))}{\partial U} $$  
+$$ \frac{\partial J}{\partial U}=\frac{\partial F(w_c,\hat{v})}{\partial U} $$  
 $$ \frac{\partial J}{\partial v_c}=\vec{0}, c\notin \{c-m,..,c-1,c+1,..c+m\} $$  
-$$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial \hat{v}}\cdot\frac{\partial \hat{v}}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial v_j}, c\in \{c-m,..,c-1,c+1,..c+m\} $$  
+$$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v})}{\partial \hat{v}}\cdot\frac{\partial \hat{v}}{\partial v_j}=\frac{\partial F(w_c,\hat{v})}{\partial v_j}, c\in \{c-m,..,c-1,c+1,..c+m\} $$  
 
 ![3e](Assignment1-img/3e.jpg)  
 
