@@ -44,7 +44,7 @@ $$ \frac{\partial\hat{y}}{\partial\theta_i}=\frac{\partial}{\partial\theta_i}(\f
 $$ \frac{\partial CE}{\theta_i}=\frac{\partial CE}{\partial\hat{y}}\frac{\partial\hat{y}}{\theta_i}=-\frac{1}{\hat{y}_k}\cdot(-\hat{y}_i\cdot\hat{y}_k)=\hat{y}_i $$  
 
 综上：  
-$$ \frac{\partial CE(y,\hat{y})}{\partial\theta_i}=\begin{cases} \hat{y}_i-1 & i=k \\ \hat{y} & i\neq k \end{cases} $$  
+$$ \frac{\partial CE(y,\hat{y})}{\partial\theta_i}=\begin{cases} \hat{y}_i-1 & i=k \\ \hat{y}_i & i\neq k \end{cases} $$  
 
 或者：
 
@@ -140,3 +140,58 @@ $$ J_{CBOW}(word_{c-m..c+m})=F(w_c,\hat{v}) $$
 $$ \frac{\partial J}{\partial U}=\frac{\partial F(w_c,\hat{v}))}{\partial U} $$  
 $$ \frac{\partial J}{\partial v_c}=\vec{0}, c\notin \{c-m,..,c-1,c+1,..c+m\} $$  
 $$ \frac{\partial J}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial \hat{v}}\cdot\frac{\partial \hat{v}}{\partial v_j}=\frac{\partial F(w_c,\hat{v}))}{\partial v_j}, c\in \{c-m,..,c-1,c+1,..c+m\} $$  
+
+![3e](Assignment1-img/3e.jpg)  
+
+![3f](Assignment1-img/3f.jpg)  
+
+![3g](Assignment1-img/3g.jpg)  
+解：我本地共训练了5+个小时。  
+输出的结果为：  
+![3g_ans](Assignment1-img/q3_word_vectors.png)
+   
+
+![3h](Assignment1-img/3h.jpg)  
+
+![4a](Assignment1-img/4a.jpg)  
+解答：
+按题目要求实现即可。
+
+![4b](Assignment1-img/4b.jpg)  
+解：引入正则化可以降低模型复杂度，进而避免过拟合，以提升泛化能力。  
+
+![4c](Assignment1-img/4c.jpg)  
+解：注意是按照模型的验证集准确率来选择最优模型。  
+
+![4d](Assignment1-img/4d.jpg)  
+解：我的本地答案：  
+(1) 使用自己训练的词向量的结果
+```
+Best regularization value: 7.05E-04
+Test accuracy (%): 30.361991
+dev acciracu (%): 32.698
+```
+  
+(2) 使用预训练的词向量的结果
+```
+Best regularization value: 1.23E+01
+Test accuracy (%): 37.556561
+dev acciracu (%): 37148
+```
+使用预训练的词向量的效果更好的原因：
+* 其数据量大。
+* 训练充分。
+* 其采用的为GloVe,该模型利用全局的信息。
+* 维度高。
+
+![4e](Assignment1-img/4e.jpg)  
+解：  
+![4e_ans](Assignment1-img/q4_reg_v_acc.png)   
+解释：随着正则化因子的增大，最终所得的模型越简单，拟合能力差，出现欠拟合，导致两者的准确率下降。  
+
+![4f](Assignment1-img/4f.jpg)  
+解：  
+![4f_ans](Assignment1-img/q4_dev_conf.png)  
+  
+
+![4g](Assignment1-img/4g.jpg)  
