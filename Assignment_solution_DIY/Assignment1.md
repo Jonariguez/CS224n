@@ -1,6 +1,6 @@
 <p align="center"><img src="tex/7b46180428e2456b52c2187d565f947b.svg?invert_in_darkmode&sanitize=true" align=middle width=318.91199505pt height=14.611878599999999pt/></p>  
   
-**所有的代码题目对应的代码可查看对应文件夹AssignmentX_Code下的.py文件**
+**所有的代码题目对应的代码可查看对应文件夹Assignment1_Code下的.py文件**
   
 ![1a](Assignment1-img/1a.jpg)  
 
