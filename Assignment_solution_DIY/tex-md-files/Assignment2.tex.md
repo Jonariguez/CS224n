@@ -1,6 +1,6 @@
 $$ Assignment\#2 -solution\quad By\ Jonariguez$$  
 
-所有的代码题目对应的代码可查看对应文件夹Assignment2_Code下的.py文件  
+**所有的代码题目对应的代码可查看对应文件夹Assignment2_Code下的.py文件**  
 
 ![1a](Assignment2-img/1a.jpg)
 
@@ -127,7 +127,7 @@ $$ b_2\in \mathbb{R}^{1\times |V|} $$
 
 ![3a](Assignment2-img/3a.jpg)  
 **解：**  
-由于标签$y^{t}$是one-hot向量，假设$y^{t}$的真实标记为$k$  
+由于标签$y^{(t)}$是one-hot向量，假设$y^{(t)}$的真实标记为$k$  
 则：  
 $$ J^{(t)}(\theta)=CE(y^{(t)},\hat{y}^{(t)})=-log\ \hat{y}_k^{(t)}=log\ \frac{1}{\hat{y}_k^{(t)}} $$  
 $$ PP^{(t)}(y^{(t)},\hat{y}^{(t)})=\frac{1}{\hat{y}_k^{(t)}} $$  
@@ -194,7 +194,7 @@ $$ \frac{\partial J^{(t)}}{\partial H}\rvert_t=\frac{\partial J^{(t)}}{\partial 
 
 $$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial r}(rM) $$  
 
-结果为$x^T$ **右乘** 前面一坨的求导结果$\delta$，即：  
+结果为$M^T$ **右乘** 前面一坨的求导结果$\delta$，即：  
 
 $$ \frac{\partial J}{\partial x}=\delta\cdot M^T $$  
 
