@@ -193,7 +193,9 @@ $$ \frac{\partial J^{(t)}}{\partial H}\rvert_t=\frac{\partial J^{(t)}}{\partial 
 2. 其中，$v$是一个行向量$r$乘上一个矩阵$M$，然后对行向量$r$求导：  
 
 $$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial r}(rM) $$  
-结果为$x^T$ **右乘** 前面一坨的求导结果$\delta$，即： 
+
+结果为$x^T$ **右乘** 前面一坨的求导结果$\delta$，即：  
+
 $$ \frac{\partial J}{\partial x}=\delta\cdot M^T $$  
 
 而具体到题目中就是：
