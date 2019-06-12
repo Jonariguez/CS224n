@@ -127,7 +127,7 @@ Final evaluation on test set
 
 ![3a](Assignment2-img/3a.jpg)  
 **解：**  
-由于标签<img src="tex/6a36c32ba04a9c980fedb91fd0901328.svg?invert_in_darkmode&sanitize=true" align=middle width=13.61499809999999pt height=26.085962100000025pt/>是one-hot向量，假设<img src="tex/6a36c32ba04a9c980fedb91fd0901328.svg?invert_in_darkmode&sanitize=true" align=middle width=13.61499809999999pt height=26.085962100000025pt/>的真实标记为<img src="tex/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>  
+由于标签<img src="tex/c7780c35c9ba20fb48a56bd0fa27ec60.svg?invert_in_darkmode&sanitize=true" align=middle width=23.889029999999988pt height=29.190975000000005pt/>是one-hot向量，假设<img src="tex/c7780c35c9ba20fb48a56bd0fa27ec60.svg?invert_in_darkmode&sanitize=true" align=middle width=23.889029999999988pt height=29.190975000000005pt/>的真实标记为<img src="tex/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode&sanitize=true" align=middle width=9.075367949999992pt height=22.831056599999986pt/>  
 则：  
 <p align="center"><img src="tex/993ede9db595831bb98d78a5c5e10bcd.svg?invert_in_darkmode&sanitize=true" align=middle width=327.38211825pt height=42.03361965pt/></p>  
 <p align="center"><img src="tex/55ef77d802273c2f6f9ba07fb455ce0f.svg?invert_in_darkmode&sanitize=true" align=middle width=159.84953819999998pt height=42.03361965pt/></p>  
@@ -194,7 +194,7 @@ Final evaluation on test set
 
 <p align="center"><img src="tex/b6d0dcf502ea0ce7754147740d870c2e.svg?invert_in_darkmode&sanitize=true" align=middle width=102.78223229999999pt height=33.81208709999999pt/></p>  
 
-结果为<img src="tex/9f594b0805372992cdd22e5e7d40b67f.svg?invert_in_darkmode&sanitize=true" align=middle width=18.928705949999994pt height=27.6567522pt/> **右乘** 前面一坨的求导结果<img src="tex/38f1e2a089e53d5c990a82f284948953.svg?invert_in_darkmode&sanitize=true" align=middle width=7.928075099999989pt height=22.831056599999986pt/>，即：  
+结果为<img src="tex/aa6187664247ff6929af116a80a61803.svg?invert_in_darkmode&sanitize=true" align=middle width=27.27343409999999pt height=27.6567522pt/> **右乘** 前面一坨的求导结果<img src="tex/38f1e2a089e53d5c990a82f284948953.svg?invert_in_darkmode&sanitize=true" align=middle width=7.928075099999989pt height=22.831056599999986pt/>，即：  
 
 <p align="center"><img src="tex/1b01e8348fbffb175c9ea76d02ad3d71.svg?invert_in_darkmode&sanitize=true" align=middle width=91.30046309999999pt height=33.81208709999999pt/></p>  
 
