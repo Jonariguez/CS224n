@@ -77,4 +77,31 @@ $\mathbf{\beta_1}$一般要接近1。
 
 ![2g2](Assignment2-img/2g2.jpg)  
 **解：**  
+* 更新量$\mathbf{m}$: 对梯度(更新量)进行滑动平均  
+* 学习率$\mathbf{v}$: 对梯度的平方进行滑动平均  
 
+梯度平均最小的参数的更新量最大，也就是说，在损失函数相对于它们的梯度很小的时候也能快速收敛。即在平缓的地方也能快递移动到最优解。  
+
+![2h](Assignment2-img/2h.jpg)  
+**解：**  
+我的结果为  
+```
+Epoch 10 out of 10
+924/924 [============================>.] - ETA: 0s - train loss: 0.0654
+Evaluating on dev set - dev UAS: 88.37
+New best dev UAS! Saving model in ./data/weights/parser.weights
+
+===========================================================================
+TESTING
+===========================================================================
+Restoring the best model weights found on the dev set
+Final evaluation on test set
+- test UAS: 88.84
+```
+运行时间：15分钟。  
+
+
+![3](Assignment2-img/3.jpg)
+**题目解读**  
+先明确题目中各个量的维度：  
+由题目可知，$x^{(t)}$是one-hot**行向量**，且隐藏层也是行向量的形式。
