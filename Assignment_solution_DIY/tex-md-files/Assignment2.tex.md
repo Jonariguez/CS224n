@@ -1,4 +1,4 @@
-$$ Assignment\#1 -solution\quad By\ Jonariguez$$  
+$$ Assignment\#2 -solution\quad By\ Jonariguez$$  
 
 所有的代码题目对应的代码可查看对应文件夹Assignment2_Code下的.py文件  
 
@@ -27,7 +27,7 @@ $$ Assignment\#1 -solution\quad By\ Jonariguez$$
 ![1e](Assignment2-img/1e.jpg)  
 
 **解:**  
-TensorFlow的自动梯度，是指我们使用时只需要定义图的就好了，不用自己实现自动梯度，反向传播和求导由TensorFlow自动完成。  
+TensorFlow的自动梯度，是指我们使用时只需要定义图的节点就好了，不用自己实现求解梯度，反向传播和求导由TensorFlow自动完成。  
   
 
 ![2](Assignment2-img/2.jpg)  
@@ -49,7 +49,7 @@ TensorFlow的自动梯度，是指我们使用时只需要定义图的就好了�
 ![2b](Assignment2-img/2b.jpg)  
 **解：**  
 共2n步  
-* 每个次都要进入stack中，故要有n步SHIFT操作。  
+* 每个词都要进入stack中，故要有n步SHIFT操作。  
 * 最终stack中只剩ROOT，即每一次ARC会从stack中删掉一个词，故共有n步LEFT-ARC和RIGHT-ARC操作。  
 
    
@@ -171,23 +171,31 @@ $$ \frac{\partial J^{(t)}}{\partial h^{(t-1)}}= \frac{\partial J^{(t)}}{\partial
 
 考虑如下求导：  
 $$ \frac{\partial J}{\partial x}=\frac{\partial J}{\partial u_1}\frac{\partial u_1}{\partial u_2}\cdot\cdot\cdot\cdot\frac{\partial u_{m}}{\partial v}\frac{\partial v}{\partial x} $$  
+
 假设除了$\frac{\partial v}{\partial x}$，前面的已经求出了  
 $$ \frac{\partial J}{\partial u_1}\frac{\partial u_1}{\partial u_2}\cdot\cdot\cdot\cdot\frac{\partial u_{m}}{\partial v}=\delta $$  
+
 现在就差$\frac{\partial v}{\partial x}$了。需要讨论两种情况：  
-1. $v$是一个行向量$r$乘上一个矩阵$M$，然后对矩阵$M$求导：  
+
+1. 其中，$v$是一个行向量$r$乘上一个矩阵$M$，然后对矩阵$M$求导：  
 $$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial M}(rM) $$  
-结果为$r^T$**左乘**前面一坨的求导结果$\delta$，即：
+
+结果为$r^T$ **左乘** 前面一坨的求导结果$\delta$，即：  
+
 $$ \frac{\partial J}{\partial x}=r^T\cdot\delta $$  
+
 而具体到题目中就是：  
 $$ \frac{\partial J^{(t)}}{\partial v^{(t)}}=\delta_2^{(t)} $$  
 $$ \frac{\partial v^{(t)}}{\partial H}=\frac{\partial }{\partial H}(h^{(t-1)}H+e^{(t)}I+b_1)=\frac{\partial }{\partial H}(h^{(t-1)}H)=(h^{(t-1)})^T $$  
 所以：  
 $$ \frac{\partial J^{(t)}}{\partial H}\rvert_t=\frac{\partial J^{(t)}}{\partial v^{(t)}}\frac{\partial v^{(t)}}{\partial H}\rvert_t=(h^{(t-1)})^T\cdot\delta_2^{(t)} $$  
 
-2. $v$是一个行向量$r$乘上一个矩阵$M$，然后对行向量$r$求导：  
+2. 其中，$v$是一个行向量$r$乘上一个矩阵$M$，然后对行向量$r$求导：  
+
 $$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial r}(rM) $$  
-结果为$x^T$**右乘**前面一坨的求导结果$\delta$，即： 
+结果为$x^T$ **右乘** 前面一坨的求导结果$\delta$，即： 
 $$ \frac{\partial J}{\partial x}=\delta\cdot M^T $$  
+
 而具体到题目中就是：
 $$ \frac{\partial J^{(t)}}{\partial h^{(t-1)}}= \frac{\partial J^{(t)}}{\partial v^{(t)}}\cdot \frac{\partial v^{(t)}}{\partial h^{(t-1)}}=\delta_2^{(t)}\cdot H^T $$  
 
@@ -223,12 +231,15 @@ $$ \theta^{(t)}=h^{(t)}U+b_2 \longrightarrow O(|V|D_h)$$
 $$ \hat{y}^{(t)}=softmax(\theta^{(t)}) \longrightarrow O(|V|)$$  
 $$ J^{(t)}=CE(y^{(t)},\hat{y}^{(t)}) \longrightarrow O(|V|)$$  
 综上，在有两阶的时候则只保留两阶的情况下，前向传播的复杂度为：  
+
 $$ O(D_h^2+dD_h+|V|D_h) $$  
 同理，反向传播的复杂度为：  
 $$ O(D_h^2+dD_h+|V|D_h) $$  
+
 上述是第一个时间步长的复杂度，而$\tau$个时间步的话就是：  
-* 一次损失函数对$h^{(t)}$的求导，复杂度为$O(|V|D_h)$；
-* $\tau$次反向传播，复杂度为$O(\tau(D_h^2+dD_h))$;  
+
+*  一次损失函数对$h^{(t)}$的求导，复杂度为$O(|V|D_h)$；
+*  $\tau$次反向传播，复杂度为$O(\tau(D_h^2+dD_h))$;  
   
 故，$\tau$个时间步的反向传播复杂度为：  
 $$ O(\tau(D_h^2+dD_h)+|V|D_h) $$  
