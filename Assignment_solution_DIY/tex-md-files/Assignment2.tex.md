@@ -174,8 +174,8 @@ $$ \frac{\partial J}{\partial x}=\frac{\partial J}{\partial u_1}\frac{\partial u
 假设除了$\frac{\partial v}{\partial x}$，前面的已经求出了  
 $$ \frac{\partial J}{\partial u_1}\frac{\partial u_1}{\partial u_2}\cdot\cdot\cdot\cdot\frac{\partial u_{m}}{\partial v}=\delta $$  
 现在就差$\frac{\partial v}{\partial x}$了。需要讨论两种情况：  
-1. $v$是一个行向量$r$乘上一个矩阵$x$，然后对矩阵$x$求导：  
-$$ \frac{\partial }{\partial x}(rx) $$  
+1. $v$是一个行向量$r$乘上一个矩阵$M$，然后对矩阵$M$求导：  
+$$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial M}(rM) $$  
 结果为$r^T$**左乘**前面一坨的求导结果$\delta$，即：
 $$ \frac{\partial J}{\partial x}=r^T\cdot\delta $$  
 而具体到题目中就是：  
@@ -184,10 +184,55 @@ $$ \frac{\partial v^{(t)}}{\partial H}=\frac{\partial }{\partial H}(h^{(t-1)}H+e
 所以：  
 $$ \frac{\partial J^{(t)}}{\partial H}\rvert_t=\frac{\partial J^{(t)}}{\partial v^{(t)}}\frac{\partial v^{(t)}}{\partial H}\rvert_t=(h^{(t-1)})^T\cdot\delta_2^{(t)} $$  
 
-2. $v$是一个行向量$r$乘上一个矩阵$x$，然后对行向量$r$求导：  
-$$ \frac{\partial }{\partial r}(rx) $$  
+2. $v$是一个行向量$r$乘上一个矩阵$M$，然后对行向量$r$求导：  
+$$ \frac{\partial v}{\partial x}=\frac{\partial }{\partial r}(rM) $$  
 结果为$x^T$**右乘**前面一坨的求导结果$\delta$，即： 
-$$ \frac{\partial J}{\partial x}=\delta\cdot x^T $$  
+$$ \frac{\partial J}{\partial x}=\delta\cdot M^T $$  
 而具体到题目中就是：
 $$ \frac{\partial J^{(t)}}{\partial h^{(t-1)}}= \frac{\partial J^{(t)}}{\partial v^{(t)}}\cdot \frac{\partial v^{(t)}}{\partial h^{(t-1)}}=\delta_2^{(t)}\cdot H^T $$  
+
+
+![3c](Assignment2-img/3c.jpg)
+**解：**  
+RNN的反向传播是按时间的反向传播，对于时间步$t$的损失函数$J^{(t)}$要沿时间向前传播，故现在为了方便，定义时间步$t$的损失函数$J^{(t)}$对每一时间步的误差项$\delta^{(t)}$:  
+$$ \delta^{(t)}=\frac{\partial J^{(t)}}{\partial h^{(t)}} $$
+
+现推导误差项的传播：  
+$$ \delta^{(t)}=\frac{\partial J^{(t)}}{\partial h^{(t)}}=(\hat{y}-y)\cdot U^T $$  
+$$ h^{(t)}=sigmoid(h^{(t-1)}H+e^{(t)}I+b_1) $$  
+$$ \frac{\partial h^{(t)}}{\partial h^{(t-1)}}=h^{(t)}\circ (1-h^{(t)})\circ H^T $$  
+故可得递推式：  
+$$ \delta^{(t-1)}=\frac{\partial J^{(t)}}{\partial h^{(t-1)}}=\frac{\partial J^{(t)}}{\partial h^{(t)}}\cdot\frac{\partial h^{(t)}}{\partial h^{(t-1)}}=\delta^{(t)}\circ h^{(t)}\circ(1-h^{(t)})\cdot H^T $$  
+即可得：  
+$$ \frac{\partial J^{(t)}}{\partial L_{x^{(t-1)}}}=\frac{\partial J^{(t)}}{\partial h^{(t-1)}}\cdot\frac{\partial h^{(t-1)}}{\partial L_{x^{(t-1)}}}=\delta^{(t-1)}\cdot I^T\circ h^{(t-1)}\circ(1-h^{(t-1)}) $$  
+
+$$ \frac{\partial J^{(t)}}{\partial I}\rvert_{t-1}=\frac{\partial J^{(t)}}{\partial h^{(t-1)}}\cdot\frac{\partial h^{(t-1)}}{\partial I}\rvert_{t-1}=(e^{(t-1)})^T\cdot\delta^{(t-1)}\circ h^{(t-1)}\circ(1-h^{(t-1)}) $$  
+
+$$ \frac{\partial J^{(t)}}{\partial H}\rvert_{t-1}=\frac{\partial J^{(t)}}{\partial h^{(t-1)}}\cdot\frac{\partial h^{(t-1)}}{\partial H}\rvert_{t-1}=(h^{(t-2)})^T\cdot\delta^{(t-1)}\circ h^{(t-1)}\circ(1-h^{(t-1)}) $$  
+
+
+注意，上述过程用到了$sigmoid$ 函数的导数:  
+$$ \sigma'(x)=\sigma(x)\circ(1-\sigma(x)) $$  
+
+![3d](Assignment2-img/3d.jpg)  
+前向传播的复杂度分别为：  
+$$ e^{(t)}=x^{(t)}L \longrightarrow O(|V|)$$  
+$$ v^{(t)}=h^{(t-1)}H+e^{(t)}I+b_1 \longrightarrow O(D_h^2)+O(dD_h)$$  
+$$ h^{(t)}=sigmoid(v^{(t)}) \longrightarrow O(D_h)$$  
+$$ \theta^{(t)}=h^{(t)}U+b_2 \longrightarrow O(|V|D_h)$$  
+$$ \hat{y}^{(t)}=softmax(\theta^{(t)}) \longrightarrow O(|V|)$$  
+$$ J^{(t)}=CE(y^{(t)},\hat{y}^{(t)}) \longrightarrow O(|V|)$$  
+综上，在有两阶的时候则只保留两阶的情况下，前向传播的复杂度为：  
+$$ O(D_h^2+dD_h+|V|D_h) $$  
+同理，反向传播的复杂度为：  
+$$ O(D_h^2+dD_h+|V|D_h) $$  
+上述是第一个时间步长的复杂度，而$\tau$个时间步的话就是：  
+* 一次损失函数对$h^{(t)}$的求导，复杂度为$O(|V|D_h)$；
+* $\tau$次反向传播，复杂度为$O(\tau(D_h^2+dD_h))$;  
+  
+故，$\tau$个时间步的反向传播复杂度为：  
+$$ O(\tau(D_h^2+dD_h)+|V|D_h) $$  
+
+而如果是对前$\tau$个词，每次都进行$\tau$步的反向传播，那么复杂度大概为：  
+$$ O(\tau^2(D_h^2+dD_h)+\tau|V|D_h) $$  
 
