@@ -181,7 +181,7 @@ dev accuracy (%): 32.698
 ```
 Best regularization value: 1.23E+01
 Test accuracy (%): 37.556561
-dev accuracy (%): 37148
+dev accuracy (%): 37.148
 ```
 使用预训练的词向量的效果更好的原因：
 * 其数据量大。
