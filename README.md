@@ -5,6 +5,7 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 
 ## 依赖
 * python 2.7
+* python 3.6
 * tensorflow 0.12.1
   
 ## 指南
