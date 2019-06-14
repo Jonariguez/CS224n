@@ -20,6 +20,9 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
     * `glove.6B.50d.txt`  
     获取方式为 http://nlp.stanford.edu/data/glove.6B.zip ，将下载的压缩包解压之后,将其中的`glove.6B.50d.txt`放在`Assignment1\utils\datasets`文件夹下即可。    
 
+2. 在`Assignment3`的`util.py`文件`import StringIO`报错  
+   因为后面两次作业的代码我是用的**python3.6**，所以会遇到这样的错误。在**python3**中已经把`StringIO`放到了`io`模块中，改成`from io import StringIO`即可。
+
 ## 学习资料推荐
 * 码农场CS224n课程学习笔记  
 http://www.hankcs.com/nlp/cs224n-introduction-to-nlp-and-deep-learning.html  
