@@ -10,6 +10,7 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 ## 指南
 * `Assignment`等文件夹中是对应的作业，包括作业的`pdf`，`代码`，`.sh`文件等等，**它们都是原始的，即没有任何标记，代码里没有任何已实现的代码，这样可以方便大家有需要的可以下载下来自己去研究、去独立完成**。  
 * 我自己的完成的作业和实现的代码，都在`Assignment_solution_DIY`文件夹下，只是作为备忘或者笔记保存，大家也可以参考或者指正错误，多谢指教。  
+* 我自己完成的代码中，`Assignment1`的运行环境是python2.7，`Assignment2`和`Assignment3`是python3.6  
 
 ## 问题
 1. Assignment1中的通过运行`get_datasets.sh`脚本不能成功获得数据  
