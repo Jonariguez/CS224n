@@ -33,3 +33,5 @@ http://latex.91maths.com/
 https://www.codecogs.com/latex/eqneditor.php  
 * 利用.gitignore忽略本地和已提交的文件  
 https://www.cnblogs.com/YangJieCheng/p/8175761.html
+* python 3.6 TypeError: write() argument must be str, not bytes解决办法  
+  https://www.jianshu.com/p/b53ac2effb85
