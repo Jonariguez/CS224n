@@ -1,7 +1,7 @@
 # CS224n
 Stanford CS224n Natural Language Processing with Deep Learning课程资料(**2017**)  
 课程官网 http://web.stanford.edu/class/cs224n/  
-包括课件([lecture_slides](lecture_slides/))、讲义([lecture_notes](lecture_notes/))、作业(assigment)及作业解答。
+包括课件([lecture_slides](lecture_slides/))、讲义([lecture_notes](lecture_notes/))、作业(assigment)及作业解答([Assignment_solution](Assignment_solution_DIY/))。
 
 ## 依赖
 * python 2.7
