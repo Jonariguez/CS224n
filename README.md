@@ -6,7 +6,7 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
 ## 依赖
 * python 2.7
 * python 3.6
-* tensorflow 0.12.1
+* tensorflow 1.11.0
   
 ## 指南
 * `Assignment`等文件夹中是对应的作业，包括作业的`pdf`，`代码`，`.sh`文件等等，**它们都是原始的，即没有任何标记，代码里没有任何已实现的代码，这样可以方便大家有需要的可以下载下来自己去研究、去独立完成**。  
