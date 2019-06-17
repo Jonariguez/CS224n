@@ -35,4 +35,6 @@ https://www.codecogs.com/latex/eqneditor.php
 * 利用.gitignore忽略本地和已提交的文件  
 https://www.cnblogs.com/YangJieCheng/p/8175761.html
 * python 3.6 TypeError: write() argument must be str, not bytes解决办法  
-  https://www.jianshu.com/p/b53ac2effb85
+  https://www.jianshu.com/p/b53ac2effb85  
+* tf.stack()和tf.unstack()函数  
+https://blog.csdn.net/qq_33655521/article/details/83750546
