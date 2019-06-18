@@ -25,6 +25,8 @@ Stanford CS224n Natural Language Processing with Deep Learning课程资料(**201
    因为后面两次作业的代码我是用的**python3.6**，所以会遇到这样的错误。在**python3**中已经把`StringIO`放到了`io`模块中，改成`from io import StringIO`即可。
 
 ## 学习资料推荐
+* B站视频  
+https://www.bilibili.com/video/av41393758
 * 码农场CS224n课程学习笔记  
 http://www.hankcs.com/nlp/cs224n-introduction-to-nlp-and-deep-learning.html  
 * Github中.md文件的LaTex渲染  
