@@ -53,7 +53,9 @@ $$ J=CD(y^{(t)},\hat{y}^{(t)})=-\sum_{i}{y_i^{(t)}log(\hat{y}_i^{(t)})} \rightar
 
 i) ① `window-based model`中的$W\in \mathbb{R}^{(2w+1)D\times H}$，而`RNN`中的$W_x\in \mathbb{R}^{D\times H}$;
 
-   ② `RNN`多了个$W_h\in \mathbb{R}^{H\times H}$。
+
+② `RNN`多了个$W_h\in \mathbb{R}^{H\times H}$。
+
 
 ii) $\mathcal{O}((D+H)\cdot H\cdot T)$.
 
@@ -463,10 +465,13 @@ def add_training_op(self, loss):
 
 **解：**
 
-i) `rnn`和`GRU`都会梯度消失，但是`rnn`消失的更快一些，因此`梯度裁剪`也不会有帮助。
+i) `rnn`和`GRU`都会梯度消失，但是`rnn`消失的更快一些，因此`梯度裁剪`也不会有帮助。  
+
 ii) `GRU`可以有效防止梯度消失.
 
 ![3f](Assignment3-img/3f.jpg)  
+
+**结果**
 
 ```
 DEBUG:Token-level confusion matrix:
