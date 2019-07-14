@@ -1,4 +1,4 @@
-<p align="center"><img src="/tex/0904c624da13339a5ef6b9f5fdfbc4d9.svg?invert_in_darkmode&sanitize=true" align=middle width=319.82533935pt height=14.611878599999999pt/></p>  
+<p align="center"><img src="tex/0904c624da13339a5ef6b9f5fdfbc4d9.svg?invert_in_darkmode&sanitize=true" align=middle width=319.82533935pt height=14.611878599999999pt/></p>  
 
 **所有的代码题目对应的代码可查看对应文件夹Assignment3_Code下的.py文件**  
 
@@ -16,25 +16,25 @@ iii) 上下文、词性等。
 **解：**  
 i) 推算所有变量的形状：  
 
-<p align="center"><img src="/tex/bd40ee36b600903e77e7c7de195fc90f.svg?invert_in_darkmode&sanitize=true" align=middle width=84.840261pt height=16.06010835pt/></p>  
-<p align="center"><img src="/tex/3cc109f920e734d1530f0f74552e35a9.svg?invert_in_darkmode&sanitize=true" align=middle width=96.5359395pt height=16.06010835pt/></p>  
-<p align="center"><img src="/tex/219a2e5bf61d8c6391c0c2d94b85f52c.svg?invert_in_darkmode&sanitize=true" align=middle width=126.89764559999999pt height=16.06010835pt/></p>  
-<p align="center"><img src="/tex/1aa81fcc0a5c7956de324b6fa461a6ec.svg?invert_in_darkmode&sanitize=true" align=middle width=85.96887255pt height=16.06010835pt/></p>  
-<p align="center"><img src="/tex/a10265a64f39ee09ed22660ef0ed039e.svg?invert_in_darkmode&sanitize=true" align=middle width=126.08364615pt height=16.06010835pt/></p>  
-<p align="center"><img src="/tex/18235049cfbc866e163138183f815a94.svg?invert_in_darkmode&sanitize=true" align=middle width=83.735289pt height=18.6137556pt/></p>  
-<p align="center"><img src="/tex/6a9359f5bb3074ee588783e8d429213e.svg?invert_in_darkmode&sanitize=true" align=middle width=77.1339096pt height=15.29299695pt/></p>  
-<p align="center"><img src="/tex/78e2a588caf7f8f652bfaddc55b3aa11.svg?invert_in_darkmode&sanitize=true" align=middle width=74.86530315pt height=17.11602255pt/></p>  
-<p align="center"><img src="/tex/601f85427f4aeeb35412cb570cb68643.svg?invert_in_darkmode&sanitize=true" align=middle width=73.45363575pt height=17.11602255pt/></p>  
+<p align="center"><img src="tex/bd40ee36b600903e77e7c7de195fc90f.svg?invert_in_darkmode&sanitize=true" align=middle width=84.840261pt height=16.06010835pt/></p>  
+<p align="center"><img src="tex/3cc109f920e734d1530f0f74552e35a9.svg?invert_in_darkmode&sanitize=true" align=middle width=96.5359395pt height=16.06010835pt/></p>  
+<p align="center"><img src="tex/219a2e5bf61d8c6391c0c2d94b85f52c.svg?invert_in_darkmode&sanitize=true" align=middle width=126.89764559999999pt height=16.06010835pt/></p>  
+<p align="center"><img src="tex/1aa81fcc0a5c7956de324b6fa461a6ec.svg?invert_in_darkmode&sanitize=true" align=middle width=85.96887255pt height=16.06010835pt/></p>  
+<p align="center"><img src="tex/a10265a64f39ee09ed22660ef0ed039e.svg?invert_in_darkmode&sanitize=true" align=middle width=126.08364615pt height=16.06010835pt/></p>  
+<p align="center"><img src="tex/18235049cfbc866e163138183f815a94.svg?invert_in_darkmode&sanitize=true" align=middle width=83.735289pt height=18.6137556pt/></p>  
+<p align="center"><img src="tex/6a9359f5bb3074ee588783e8d429213e.svg?invert_in_darkmode&sanitize=true" align=middle width=77.1339096pt height=15.29299695pt/></p>  
+<p align="center"><img src="tex/78e2a588caf7f8f652bfaddc55b3aa11.svg?invert_in_darkmode&sanitize=true" align=middle width=74.86530315pt height=17.11602255pt/></p>  
+<p align="center"><img src="tex/601f85427f4aeeb35412cb570cb68643.svg?invert_in_darkmode&sanitize=true" align=middle width=73.45363575pt height=17.11602255pt/></p>  
 
 ii) 对于1个word的复杂度为：  
 
-<p align="center"><img src="/tex/70dd44bb86ac91c5837a397d008ac8d8.svg?invert_in_darkmode&sanitize=true" align=middle width=338.12691659999996pt height=19.526994300000002pt/></p>  
-<p align="center"><img src="/tex/9b758ea6ff2fcf5857451790e47f097c.svg?invert_in_darkmode&sanitize=true" align=middle width=273.37473735pt height=19.526994300000002pt/></p>  
-<p align="center"><img src="/tex/ef70fc465218ab00e7efeded5c82bd7a.svg?invert_in_darkmode&sanitize=true" align=middle width=275.70353415pt height=19.526994300000002pt/></p>  
-<p align="center"><img src="/tex/19550ee6e9e118f630b07e814e25e4ae.svg?invert_in_darkmode&sanitize=true" align=middle width=341.15479695pt height=36.6554298pt/></p>  
+<p align="center"><img src="tex/70dd44bb86ac91c5837a397d008ac8d8.svg?invert_in_darkmode&sanitize=true" align=middle width=338.12691659999996pt height=19.526994300000002pt/></p>  
+<p align="center"><img src="tex/9b758ea6ff2fcf5857451790e47f097c.svg?invert_in_darkmode&sanitize=true" align=middle width=273.37473735pt height=19.526994300000002pt/></p>  
+<p align="center"><img src="tex/ef70fc465218ab00e7efeded5c82bd7a.svg?invert_in_darkmode&sanitize=true" align=middle width=275.70353415pt height=19.526994300000002pt/></p>  
+<p align="center"><img src="tex/19550ee6e9e118f630b07e814e25e4ae.svg?invert_in_darkmode&sanitize=true" align=middle width=341.15479695pt height=36.6554298pt/></p>  
 
-所以复杂度为：  <img src="/tex/dc3fa450d83d7e5c5fd5dd4098b6764a.svg?invert_in_darkmode&sanitize=true" align=middle width=160.61776829999997pt height=24.65753399999998pt/>  
-长度为T的句子复杂度为： <img src="/tex/4427cf8b662ac97492dbc556072acc1c.svg?invert_in_darkmode&sanitize=true" align=middle width=185.29251344999997pt height=24.65753399999998pt/>   
+所以复杂度为：  <img src="tex/dc3fa450d83d7e5c5fd5dd4098b6764a.svg?invert_in_darkmode&sanitize=true" align=middle width=160.61776829999997pt height=24.65753399999998pt/>  
+长度为T的句子复杂度为： <img src="tex/4427cf8b662ac97492dbc556072acc1c.svg?invert_in_darkmode&sanitize=true" align=middle width=185.29251344999997pt height=24.65753399999998pt/>   
 
 ![1c](Assignment3-img/1c.jpg)  
 
@@ -51,20 +51,20 @@ ii) 对于1个word的复杂度为：
 
 **解：**
 
-i) ① `window-based model`中的<img src="/tex/0a9e53ae8924ccf6434b2ee4f71778c3.svg?invert_in_darkmode&sanitize=true" align=middle width=126.08364614999998pt height=29.190975000000005pt/>，而`RNN`中的<img src="/tex/63336e7a9688366ed12e1960385561df.svg?invert_in_darkmode&sanitize=true" align=middle width=88.78699004999999pt height=27.6567522pt/>;
+i) ① `window-based model`中的<img src="tex/0a9e53ae8924ccf6434b2ee4f71778c3.svg?invert_in_darkmode&sanitize=true" align=middle width=126.08364614999998pt height=29.190975000000005pt/>，而`RNN`中的<img src="tex/63336e7a9688366ed12e1960385561df.svg?invert_in_darkmode&sanitize=true" align=middle width=88.78699004999999pt height=27.6567522pt/>;
 
 
-② `RNN`多了个<img src="/tex/516b5377773b112af8b1848907da2777.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5727118pt height=27.6567522pt/>。
+② `RNN`多了个<img src="tex/516b5377773b112af8b1848907da2777.svg?invert_in_darkmode&sanitize=true" align=middle width=89.5727118pt height=27.6567522pt/>。
 
 
-ii) <img src="/tex/80512df3ab49eb555af35eb4568237b2.svg?invert_in_darkmode&sanitize=true" align=middle width=138.9049398pt height=24.65753399999998pt/>.
+ii) <img src="tex/80512df3ab49eb555af35eb4568237b2.svg?invert_in_darkmode&sanitize=true" align=middle width=138.9049398pt height=24.65753399999998pt/>.
 
 ![2b](Assignment3-img/2b.jpg)  
 
 **解：**
-ii) ① <img src="/tex/2144c3c4436ef35026e895fed8fd671f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.12334524999999pt height=22.465723500000017pt/>分数的意义理解起来不够明显、直接明了。
+ii) ① <img src="tex/2144c3c4436ef35026e895fed8fd671f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.12334524999999pt height=22.465723500000017pt/>分数的意义理解起来不够明显、直接明了。
 
-② <img src="/tex/2144c3c4436ef35026e895fed8fd671f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.12334524999999pt height=22.465723500000017pt/>分数的计算需要整个语料库来计算，很难进行批训练和并行运算。
+② <img src="tex/2144c3c4436ef35026e895fed8fd671f.svg?invert_in_darkmode&sanitize=true" align=middle width=17.12334524999999pt height=22.465723500000017pt/>分数的计算需要整个语料库来计算，很难进行批训练和并行运算。
 
 ![2c](Assignment3-img/2c.jpg) 
 
