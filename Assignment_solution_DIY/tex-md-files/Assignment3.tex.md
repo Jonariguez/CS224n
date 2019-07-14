@@ -308,3 +308,186 @@ i) ① 句子太长，容易梯度消失；
 
 ii) ① 加入GRU门控单元；  
    ② 利用双向的RNN，即biRNN。
+
+![3](Assignment3-img/3.jpg)  
+
+![3a](Assignment3-img/3a.jpg)  
+
+![3b](Assignment3-img/3b.jpg)  
+
+![3c](Assignment3-img/3c.jpg)  
+
+```python
+def __call__(self, inputs, state, scope=None):
+    """Updates the state using the previous @state and @inputs.
+    Remember the GRU equations are:
+
+    z_t = sigmoid(x_t U_z + h_{t-1} W_z + b_z)
+    r_t = sigmoid(x_t U_r + h_{t-1} W_r + b_r)
+    o_t = tanh(x_t U_o + r_t * h_{t-1} W_o + b_o)
+    h_t = z_t * h_{t-1} + (1 - z_t) * o_t
+
+    TODO: In the code below, implement an GRU cell using @inputs
+    (x_t above) and the state (h_{t-1} above).
+        - Define W_r, U_r, b_r, W_z, U_z, b_z and W_o, U_o, b_o to
+            be variables of the apporiate shape using the
+            `tf.get_variable' functions.
+        - Compute z, r, o and @new_state (h_t) defined above
+    Tips:
+        - Remember to initialize your matrices using the xavier
+            initialization as before.
+    Args:
+        inputs: is the input vector of size [None, self.input_size]
+        state: is the previous state vector of size [None, self.state_size]
+        scope: is the name of the scope to be used when defining the variables inside.
+    Returns:
+        a pair of the output vector and the new state vector.
+    """
+    scope = scope or type(self).__name__
+
+    # It's always a good idea to scope variables in functions lest they
+    # be defined elsewhere!
+    """
+    z_t = sigmoid(x_t U_z + h_{t-1} W_z + b_z)
+    r_t = sigmoid(x_t U_r + h_{t-1} W_r + b_r)
+    o_t = tanh(x_t U_o + r_t * h_{t-1} W_o + b_o)
+    h_t = z_t * h_{t-1} + (1 - z_t) * o_t
+    """
+    with tf.variable_scope(scope):
+        ### YOUR CODE HERE (~20-30 lines)
+        W_z = tf.get_variable('W_z',[self._state_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        U_z = tf.get_variable('U_z',[self.input_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        b_z = tf.get_variable('b_z',[self._state_size],dtype=tf.float32,
+                                initializer=tf.constant_initializer(0))
+        W_r = tf.get_variable('W_r',[self._state_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        U_r = tf.get_variable('U_r',[self.input_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        b_r = tf.get_variable('b_r',[self._state_size],dtype=tf.float32,
+                                initializer=tf.constant_initializer(0))
+        W_o = tf.get_variable('W_o',[self._state_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        U_o = tf.get_variable('U_o',[self.input_size,self._state_size],dtype=tf.float32,
+                                initializer=tf.contrib.layers.xavier_initializer())
+        b_o = tf.get_variable('b_o',[self._state_size],dtype=tf.float32,
+                                initializer=tf.constant_initializer(0))
+
+        #更新门
+        z_t = tf.nn.sigmoid(tf.matmul(inputs,U_z)+tf.matmul(state,W_z)+b_z)
+        #重置门
+        r_t = tf.nn.sigmoid(tf.matmul(inputs,U_r)+tf.matmul(state,W_r)+b_r)
+        #候选状态
+        h_  = tf.nn.tanh(tf.matmul(inputs,U_o)+tf.matmul(r_t*state,W_o)+b_o)
+        new_state = tf.multiply(z_t,state)+tf.multiply(1-z_t,h_)
+        ### END YOUR CODE ###
+    # For a GRU, the output and state are the same (N.B. this isn't true
+    # for an LSTM, though we aren't using one of those in our
+    # assignment)
+    output = new_state
+    return output, new_state
+```
+
+![3d](Assignment3-img/3d.jpg)  
+
+```python
+def add_prediction_op(self): 
+    """Runs an rnn on the input using TensorFlows's
+    @tf.nn.dynamic_rnn function, and returns the final state as a prediction.
+
+    TODO: 
+        - Call tf.nn.dynamic_rnn using @cell below. See:
+            https://www.tensorflow.org/api_docs/python/nn/recurrent_neural_networks
+        - Apply a sigmoid transformation on the final state to
+            normalize the inputs between 0 and 1.
+
+    Returns:
+        preds: tf.Tensor of shape (batch_size, 1)
+    """
+
+    # Pick out the cell to use here.
+    if self.config.cell == "rnn":
+        cell = RNNCell(1, 1)
+    elif self.config.cell == "gru":
+        cell = GRUCell(1, 1)
+    elif self.config.cell == "lstm":
+        cell = tf.nn.rnn_cell.LSTMCell(1)
+    else:
+        raise ValueError("Unsupported cell type.")
+
+    x = self.inputs_placeholder
+    ### YOUR CODE HERE (~2-3 lines)
+    preds = tf.nn.dynamic_rnn(cell,x,dtype=tf.float32)[1]
+    preds = tf.nn.sigmoid(preds)
+    ### END YOUR CODE
+
+    return preds #state # preds
+```
+
+```python
+def add_training_op(self, loss):
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.config.lr)
+    ### YOUR CODE HERE (~6-10 lines)
+    # - Remember to clip gradients only if self.config.clip_gradients
+    # is True.
+    # - Remember to set self.grad_norm
+    grad_and_var = optimizer.compute_gradients(loss)
+    gradients = [item[0] for item in grad_and_var]
+    variables = [item[1] for item in grad_and_var]
+    if self.config.clip_gradients:
+        clipped_grad = tf.clip_by_global_norm(gradients,clip_norm=self.config.max_grad_norm)[0]
+        gradients = clipped_grad
+
+    grad_and_var = list(zip(gradients,variables))
+    self.grad_norm = gradients
+    train_op = optimizer.apply_gradients(grad_and_var)
+    ### END YOUR CODE
+
+    assert self.grad_norm is not None, "grad_norm was not set properly!"
+    return train_op
+```
+
+**RNN**
+
+![q3_noclip](Assignment3-img/q3-noclip-rnn.png)  
+![q3_clip](Assignment3-img/q3-clip-rnn.png)  
+
+**GRU**
+
+![q3_noclip](Assignment3-img/q3-noclip-gru.png)  
+![q3_clip](Assignment3-img/q3-clip-gru.png)  
+
+
+![3e](Assignment3-img/3e.jpg)  
+
+**解：**
+
+i) `rnn`和`GRU`都会梯度消失，但是`rnn`消失的更快一些，因此`梯度裁剪`也不会有帮助。
+ii) `GRU`可以有效防止梯度消失.
+
+![3f](Assignment3-img/3f.jpg)  
+
+```
+DEBUG:Token-level confusion matrix:
+go\gu           PER             ORG             LOC             MISC            O
+PER             2998.00         20.00           17.00           24.00           90.00
+ORG             140.00          1639.00         75.00           108.00          130.00
+LOC             59.00           82.00           1868.00         39.00           46.00
+MISC            42.00           21.00           31.00           1045.00         129.00
+O               26.00           42.00           9.00            37.00           42645.00
+
+DEBUG:Token-level scores:
+label   acc     prec    rec     f1
+PER     0.99    0.92    0.95    0.93
+ORG     0.99    0.91    0.78    0.84
+LOC     0.99    0.93    0.89    0.91
+MISC    0.99    0.83    0.82    0.83
+O       0.99    0.99    1.00    0.99
+micro   0.99    0.98    0.98    0.98
+macro   0.99    0.92    0.89    0.90
+not-O   0.99    0.91    0.88    0.89
+
+INFO:Entity level P/R/F1: 0.85/0.86/0.86
+```
+
